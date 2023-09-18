@@ -76,13 +76,12 @@ ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
 ### Props
 
-| Name     | Value     | Description                                                                                                |
-| -------- | --------- | ---------------------------------------------------------------------------------------------------------- |
-| autoPlay | `boolean` | Change the slide automatically based on `interval` prop.                                                   |
-| interval | `number`  | Interval in milliseconds to automatically go to the next item when `autoPlay` is true, defaults to `2000`. |
-
-| showCarouselArrow | `boolean` | Enable previous and next arrow, defaults to `true`. |
-| showIndicators | `boolean` | Enable indicators to select items, defaults to `true`. |
-| showThumbs | `boolean` | Enable thumbs, defaults to `true`.  
-| thumbWidth | `number` | Width of the thumb, defaults to `80`.  
-| width | `number` or `string` | The width of the carousel, defaults to `100%`.
+| Name              | Value                | Description                                                                                                |
+| ----------------- | -------------------- | ---------------------------------------------------------------------------------------------------------- |
+| autoPlay          | `boolean`            | Change the slide automatically based on `interval` prop.                                                   |
+| interval          | `number`             | Interval in milliseconds to automatically go to the next item when `autoPlay` is true, defaults to `2000`. |
+| showCarouselArrow | `boolean`            | Enable previous and next arrow, defaults to `true`.                                                        |
+| showIndicators    | `boolean`            | Enable indicators to select items, defaults to `true`.                                                     |
+| showThumbs        | `boolean`            | Enable thumbs, defaults to `true`.                                                                         |
+| thumbWidth        | `number`             | Width of the thumb, defaults to `80`.                                                                      |
+| width             | `number` or `string` | The width of the carousel, defaults to `100%`.                                                             |
