@@ -1,4 +1,4 @@
-import Carousel from "./Carousel/Carousel";
+import Carousel from "./carousel/Carousel";
 
 const App = () => {
   const slides = [
