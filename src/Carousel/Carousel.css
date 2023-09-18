@@ -1,0 +1,35 @@
+/* Hide scrollbar for Firefox */
+.hide-scrollbar-firefox {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for Internet Explorer and Edge */
+.hide-scrollbar-ie {
+  -ms-overflow-style: none;
+}
+
+/* Hide the scrollbar thumb in Webkit browsers (Chrome, Safari) */
+.hide-scrollbar-webkit::-webkit-scrollbar {
+  width: 0.1em;
+}
+
+.hide-scrollbar-webkit::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.carousel-slide {
+  opacity: 1;
+  animation: fade 1.2s ease-in;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.carousel-slide.hidden {
+  opacity: 0;
+}
