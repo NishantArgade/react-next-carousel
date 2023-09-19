@@ -1,7 +1,7 @@
 {
   "name": "react-next-carousel",
   "private": false,
-  "version": "0.0.10",
+  "version": "0.0.20",
   "type": "module",
   "description": "react.js and next.js carousel with typescript",
   "main": "dist/index.umd.js",
@@ -10,7 +10,8 @@
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [

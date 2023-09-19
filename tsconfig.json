@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "typeRoots": ["./dist/index.d.ts"],
+    "typeRoots": ["./dist/index.d.ts", "node_modules/@types"],
     /* Bundler mode */
     "moduleResolution": "Node",
     "declaration": true,
