@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
-import "./Carousel.css";
+import styled, { keyframes } from "styled-components"; // Import styled-components
 
 interface ICarousel {
   slides: string[];
@@ -16,17 +16,174 @@ interface ICarousel {
   effect?: "fade" | "slide";
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const CarouselContainer = styled.div<{ carouselWidth?: string }>`
+  position: relative;
+  max-width: ${(props) => props.carouselWidth || "20rem"};
+  min-height: 10rem;
+`;
+
+const CarouselOverflow = styled.div`
+  overflow: hidden;
+  position: relative;
+  min-height: 10rem;
+`;
+
+const CarouselSlides = styled.div<{ carouselWidth?: string }>`
+  display: flex;
+  transition: transform 0.5s ease-out;
+  aspect-ratio: 16 / 9;
+`;
+
+const CarouselSlide = styled.span`
+  display: none;
+  &.carousel-slide {
+    opacity: 1;
+    animation: ${fadeIn} 1.2s ease-in;
+  }
+
+  &.carousel-slide.hidden {
+    opacity: 0;
+  }
+`;
+
+const CarouselArrows = styled.div`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+`;
+
+const ArrowButton = styled.button`
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  border: none;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.4
+  ); /* Replace with your desired background color */
+  color: #333; /* Replace with your desired arrow color */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.8
+    ); /* Replace with your desired hover background color */
+  }
+`;
+
+const IndicatorsContainer = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+`;
+
+const IndicatorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+`;
+
+const Indicator = styled.div<{ indicatorSize?: string; isActive?: boolean }>`
+  width: ${(props) => props.indicatorSize || "0.6rem"};
+  height: ${(props) => props.indicatorSize || "0.6rem"};
+  background-color: ${(props) =>
+    props.isActive ? "rgba(255, 255, 255, 0.9)" : "rgba(255, 255, 255, 0.8)"};
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: ${(props) => (props.isActive ? "0.2rem" : "")};
+`;
+
+const ThumbsContainer = styled.div`
+  padding-top: 0.5rem; /* Replace with your desired margin */
+  position: absolute;
+  overflow-x: auto;
+  display: flex;
+  justify-content: start;
+  max-width: 100%;
+  background-color: #f6f6f6 !important;
+  align-items: center;
+
+  gap: 0.5rem;
+  -ms-overflow-style: none; /* Hide scrollbar in IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+
+  &::-webkit-scrollbar {
+    width: 0.1em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+`;
+
+const ThumbContainer = styled.div<{ isActive?: boolean; thumbWidth?: string }>`
+  cursor: pointer;
+  opacity: ${(props) => (props.isActive ? "1" : "0.6")};
+  transition: opacity 0.3s ease;
+  border: ${(props) => (props.isActive ? "2px solid #333" : "none")};
+  position: relative;
+  img {
+    width: ${(props) => props.thumbWidth};
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.1rem;
+`;
+
+const SlideInSlide = styled.span`
+  min-width: 100%;
+  img {
+    width: 100%;
+  }
+`;
+
+const VisibleSlide = styled(CarouselSlide)<{
+  isActive?: boolean;
+  carouselWidth?: string;
+}>`
+  min-width: 100%;
+  display: ${(props) => (props.isActive ? "block" : "none")};
+  img {
+    width: 100%;
+  }
+`;
 const Carousel = ({
   slides = [],
   autoSlide = false,
   autoSlideInterval = 2000,
   carouselWidth = "20rem",
-  thumbWidth = "4rem",
+  thumbWidth = "3rem",
   showThumbs = true,
   showControlArrow = true,
   showIndicators = true,
-  controllArrowSize = 30,
-  indicatorSize = "0.60rem",
+  controllArrowSize = 20,
+  indicatorSize = "0.40rem",
   effect = "fade",
 }: ICarousel) => {
   const [curr, setCurr] = useState(0);
@@ -62,99 +219,91 @@ const Carousel = ({
   }, [curr]);
 
   return (
-    <div
-      className={`relative bg-gray-200 m-5`}
-      style={{ maxWidth: `${carouselWidth}` }}
-    >
-      <div className="myclass">remove after testing</div>
-      <div className="overflow-hidden relative">
-        <div
-          className="flex transition-transform ease-out duration-500  max-w-full"
-          style={
-            effect === "fade"
-              ? { transform: "" }
-              : {
-                  transform: `translateX(-${curr * 100}%)`,
-                }
-          }
-        >
-          {slides.map((slide: string, index: number) => {
-            return (
-              <span
-                key={index}
-                className={`${
-                  effect === "fade"
-                    ? `carousel-slide + ${curr === index ? "" : "hidden"}`
-                    : "min-w-full"
-                }`}
-              >
-                <img src={slide} alt="" />
-              </span>
-            );
-          })}
-        </div>
+    <>
+      {slides.length > 0 && (
+        <CarouselContainer carouselWidth={carouselWidth}>
+          <CarouselOverflow>
+            <CarouselSlides
+              style={
+                effect === "fade"
+                  ? { transform: "" }
+                  : { transform: `translateX(-${curr * 100}%)` }
+              }
+              carouselWidth={carouselWidth}
+            >
+              {effect === "fade" &&
+                slides.map((slide: string, index: number) => {
+                  return (
+                    <VisibleSlide
+                      key={index}
+                      className={`carousel-slide ${
+                        curr === index ? "active" : "hidden"
+                      }`}
+                      isActive={curr === index}
+                    >
+                      <img src={slide} alt="" />
+                    </VisibleSlide>
+                  );
+                })}
+              {effect === "slide" &&
+                slides.map((slide: string, index: number) => {
+                  return (
+                    <SlideInSlide key={index}>
+                      <img src={slide} alt="" />
+                    </SlideInSlide>
+                  );
+                })}
+            </CarouselSlides>
 
-        {showControlArrow && (
-          <div className="absolute inset-0 flex items-center justify-between p-4">
-            <button className="p-1 rounded-full shadow bg-white/40 text-gray-800 hover:bg-white/60">
-              <ChevronLeft onClick={prev} size={controllArrowSize} />
-            </button>
-            <button className="p-1 rounded-full shadow bg-white/40 text-gray-800 hover:bg-white/60">
-              <ChevronRight onClick={next} size={controllArrowSize} />
-            </button>
-          </div>
-        )}
-        {showIndicators && (
-          <div className="absolute bottom-4 right-0 left-0">
-            <div className="flex items-center justify-center gap-2">
-              {slides.map((_: string, i: number) => (
-                <div
-                  key={i}
-                  className={`transition-all bg-white/90 rounded-full cursor-pointer ${
-                    curr === i ? "p-2" : "bg-white/50"
-                  }`}
-                  onClick={() => handleChange(i)}
-                  style={{
-                    width: `${indicatorSize}`,
-                    height: `${indicatorSize}`,
-                  }}
-                ></div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-      {showThumbs && (
-        <div className="mt-2  w-full overflow-x-auto flex  hide-scrollbar-webkit ">
-          <div className=" flex  items-center justify-center">
-            {slides.map((slide: string, i: number) => {
-              return (
-                <div
-                  key={i}
-                  id={`thumb-${i}`}
-                  className={`p-1 transition-all cursor-pointer ${
-                    curr === i
-                      ? "opacity-100 border border-gray-900"
-                      : "opacity-60"
-                  }`}
-                  style={{
-                    width: `${thumbWidth}`,
-                  }}
-                  onClick={() => handleChange(i)}
-                  ref={(ref) => {
-                    if (curr === i) {
-                      activeThumbRef.current = ref;
-                    }
-                  }}
-                >
-                  <img src={slide} alt="" />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}{" "}
-    </div>
+            {showControlArrow && (
+              <CarouselArrows>
+                <ArrowButton onClick={prev}>
+                  <ChevronLeft size={controllArrowSize} />
+                </ArrowButton>
+                <ArrowButton onClick={next}>
+                  <ChevronRight size={controllArrowSize} />
+                </ArrowButton>
+              </CarouselArrows>
+            )}
+            {showIndicators && (
+              <IndicatorsContainer>
+                <IndicatorContainer>
+                  {slides.map((_: string, i: number) => (
+                    <Indicator
+                      key={i}
+                      indicatorSize={indicatorSize}
+                      isActive={curr === i}
+                      onClick={() => handleChange(i)}
+                    />
+                  ))}
+                </IndicatorContainer>
+              </IndicatorsContainer>
+            )}
+          </CarouselOverflow>
+          {showThumbs && (
+            <ThumbsContainer>
+              {slides.map((slide: string, i: number) => {
+                return (
+                  <ThumbContainer
+                    key={i}
+                    isActive={curr === i}
+                    onClick={() => handleChange(i)}
+                    ref={(ref) => {
+                      if (curr === i) {
+                        activeThumbRef.current = ref;
+                      }
+                    }}
+                    thumbWidth={thumbWidth}
+                  >
+                    <img src={slide} alt="" />
+                  </ThumbContainer>
+                );
+              })}
+            </ThumbsContainer>
+          )}
+        </CarouselContainer>
+      )}
+    </>
   );
 };
 

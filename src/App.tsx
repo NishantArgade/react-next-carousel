@@ -9,7 +9,18 @@ const App = () => {
     "https://fastly.picsum.photos/id/28/4928/3264.jpg?hmac=GnYF-RnBUg44PFfU5pcw_Qs0ReOyStdnZ8MtQWJqTfA",
     "https://fastly.picsum.photos/id/29/4000/2670.jpg?hmac=rCbRAl24FzrSzwlR5tL-Aqzyu5tX_PA95VJtnUXegGU",
   ];
-  return <Carousel slides={slides} />;
+
+  return (
+    <Carousel
+      slides={slides}
+      carouselWidth="40rem"
+      thumbWidth="6rem"
+      autoSlide
+      effect="fade"
+      autoSlideInterval={2000}
+      controllArrowSize={30}
+    />
+  );
 };
 
 export default App;
