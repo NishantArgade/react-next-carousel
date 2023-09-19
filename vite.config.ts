@@ -2,6 +2,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+import windiCSS from "vite-plugin-windicss";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,5 +24,5 @@ export default defineConfig({
     sourcemap: true,
     emptyOutDir: true,
   },
-  plugins: [react(), dts()],
+  plugins: [react(), dts(), windiCSS()],
 });

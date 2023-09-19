@@ -66,6 +66,7 @@ const Carousel = ({
       className={`relative bg-gray-200 m-5`}
       style={{ maxWidth: `${carouselWidth}` }}
     >
+      <div className="myclass">remove after testing</div>
       <div className="overflow-hidden relative">
         <div
           className="flex transition-transform ease-out duration-500  max-w-full"
