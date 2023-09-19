@@ -1,4 +1,4 @@
-import Carousel from "./carousel/Carousel";
+import Carousel from "./carousel";
 
 const App = () => {
   const slides = [
@@ -9,15 +9,7 @@ const App = () => {
     "https://fastly.picsum.photos/id/28/4928/3264.jpg?hmac=GnYF-RnBUg44PFfU5pcw_Qs0ReOyStdnZ8MtQWJqTfA",
     "https://fastly.picsum.photos/id/29/4000/2670.jpg?hmac=rCbRAl24FzrSzwlR5tL-Aqzyu5tX_PA95VJtnUXegGU",
   ];
-  return (
-    <Carousel
-      slides={slides}
-      autoSlide
-      effect="fade"
-      carouselWidth="30rem"
-      thumbWidth="6rem"
-    />
-  );
+  return <Carousel slides={slides} />;
 };
 
 export default App;

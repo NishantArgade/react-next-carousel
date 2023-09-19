@@ -1,11 +1,28 @@
 {
-  "name": "nextjs-carousel",
-  "private": true,
-  "version": "0.0.0",
+  "name": "react-next-carousel",
+  "private": false,
+  "version": "0.0.5",
   "type": "module",
+  "description": "react.js and next.js carousel with typescript",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    }
+  },
+  "files": [
+    "/dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "prepare": "npm run build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -14,7 +31,27 @@
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NishantArgade/react-next-carousel"
+  },
+  "keywords": [
+    "react.js carousel",
+    "react carousel",
+    "next.js carousel",
+    "next carousel",
+    "images slider",
+    "images carousel",
+    "responsive carousel"
+  ],
+  "author": "Nishant Argade",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NishantArgade/react-next-carousel/issues"
+  },
+  "homepage": "https://github.com/NishantArgade/react-next-carousel#readme",
   "devDependencies": {
+    "@types/node": "^20.6.2",
     "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
@@ -27,6 +64,7 @@
     "postcss": "^8.4.29",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.3"
   }
 }
