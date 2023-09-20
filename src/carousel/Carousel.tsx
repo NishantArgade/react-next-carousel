@@ -41,6 +41,7 @@ const CarouselSlides = styled.div<{ carouselWidth?: string }>`
   display: flex;
   transition: transform 0.5s ease-out;
   aspect-ratio: 16 / 9;
+  background-color: rgba(0, 0, 0, 0.3);
 `;
 
 const CarouselSlide = styled.span`
@@ -151,10 +152,12 @@ const ThumbContainer = styled.div<{ isActive?: boolean; thumbWidth?: string }>`
   align-items: center;
   justify-content: center;
   padding: 0.1rem;
+  padding-bottom: auto;
 `;
 
 const SlideInSlide = styled.span`
   min-width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
   img {
     width: 100%;
   }
@@ -252,7 +255,7 @@ const Carousel = ({
                 })}
             </CarouselSlides>
 
-            {showControlArrow && (
+            {showControlArrow && slides.length > 1 && (
               <CarouselArrows>
                 <ArrowButton onClick={prev}>
                   <ChevronLeft size={controllArrowSize} />
@@ -262,7 +265,7 @@ const Carousel = ({
                 </ArrowButton>
               </CarouselArrows>
             )}
-            {showIndicators && (
+            {showIndicators && slides.length > 1 && (
               <IndicatorsContainer>
                 <IndicatorContainer>
                   {slides.map((_: string, i: number) => (
@@ -277,7 +280,7 @@ const Carousel = ({
               </IndicatorsContainer>
             )}
           </CarouselOverflow>
-          {showThumbs && (
+          {showThumbs && slides.length > 1 && (
             <ThumbsContainer>
               {slides.map((slide: string, i: number) => {
                 return (
