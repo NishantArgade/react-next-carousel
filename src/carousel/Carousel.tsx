@@ -71,13 +71,8 @@ const ArrowButton = styled.button`
   align-items: center;
   border-radius: 100%;
   border: none;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.4
-  ); /* Replace with your desired background color */
-  color: #333; /* Replace with your desired arrow color */
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #333;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
@@ -88,6 +83,9 @@ const ArrowButton = styled.button`
       255,
       0.8
     ); /* Replace with your desired hover background color */
+  }
+  &:focus {
+    border: none;
   }
 `;
 
@@ -119,13 +117,12 @@ const Indicator = styled.div<{ indicatorSize?: string; isActive?: boolean }>`
 `;
 
 const ThumbsContainer = styled.div`
-  padding-top: 0.5rem; /* Replace with your desired margin */
-  position: absolute;
+  padding: 0.5rem;
   overflow-x: auto;
   display: flex;
   justify-content: start;
   max-width: 100%;
-  background-color: #f6f6f6 !important;
+  background-color: #e2e2e27d !important;
   align-items: center;
 
   gap: 0.5rem;
