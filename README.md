@@ -8,11 +8,11 @@ Typescript Supported Powerful, lightweight and fully customizable carousel compo
 
 ### Slide Animation Effect
 
-![GIF Animation](/slide.gif)
+![GIF Animation](/public/slide.gif)
 
 ### Fade Animation Effect
 
-![GIF Animation](/fade.gif)
+![GIF Animation](/public/fade.gif)
 
 ### Important
 

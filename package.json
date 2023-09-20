@@ -1,7 +1,7 @@
 {
   "name": "reactjs-nextjs-carousel",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "description": "react.js and next.js carousel with typescript",
   "main": "dist/index.umd.js",
